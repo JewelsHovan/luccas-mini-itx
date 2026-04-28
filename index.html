@@ -12,6 +12,7 @@
         <h1>Mini-ITX build for Luccas</h1>
         <p class="sub">RTX 3070 + 6 parts + a case. Pick alternatives, see the total. Spot-check prices before buying.</p>
         <nav>
+          <a href="#how">How a PC works</a>
           <a href="#parts">Parts</a>
           <a href="#cases">Cases</a>
           <a href="#total">Total</a>
@@ -21,6 +22,176 @@
     </header>
 
     <main class="wrap">
+      <!-- HOW A PC WORKS (beginner explainer) -->
+      <section id="how">
+        <div class="head">
+          <h2>How a PC works (in plain English)</h2>
+          <p class="muted">Skip this if you already know what a CPU is. Otherwise: ~5 min read. Each part of the shopping list maps to one box below.</p>
+        </div>
+
+        <p>
+          A desktop PC is really just <b>six things wired together</b>: a brain (CPU), a graphics worker (GPU),
+          short-term memory (RAM), long-term storage (SSD), a power supply, and a motherboard that connects
+          everything. The case holds it all. That's the whole story — the rest is detail.
+        </p>
+
+        <div class="how-grid">
+
+          <article class="how-card">
+            <h3>CPU — the brain</h3>
+            <p class="analogy">Think: a chef who can do anything, one task at a time per "burner."</p>
+            <p>
+              The CPU runs the operating system, your apps, the game logic, and physics.
+              <b>"Cores"</b> are independent burners — a 6-core chip can run 6 threads of work in parallel.
+              <b>Clock speed</b> (GHz) is how fast each burner cooks.
+            </p>
+            <p class="in-build">
+              <b>In this build:</b> The Ryzen 5 5600 has 6 cores. For a 3070 at 1080p/1440p that's plenty —
+              the GPU will be the bottleneck, not the CPU.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>GPU — the graphics worker</h3>
+            <p class="analogy">Think: 5,000 line cooks who can <em>only</em> chop vegetables, but in parallel.</p>
+            <p>
+              The GPU is specialized for one thing: doing the same simple math on millions of pixels at once.
+              That's what 3D games are — math on pixels. It's also why GPUs got hijacked for AI: training a
+              neural net is the same shape of work.
+            </p>
+            <p class="in-build">
+              <b>In this build:</b> Luccas' RTX 3070 has 5,888 cores and 8 GB of its own memory (VRAM).
+              That's why the build is "case + parts" — the expensive piece is already owned.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>RAM (DRAM) — the desk</h3>
+            <p class="analogy">Think: the desk space the chef spreads ingredients on while cooking.</p>
+            <p>
+              RAM holds whatever the CPU is <em>actively</em> working on — open apps, browser tabs, the game
+              currently running. It's <b>fast</b> (~50 GB/s) and <b>volatile</b> (empty when you power off).
+              More RAM = more apps open without slowdown. Speed (DDR4-3200) matters less than having enough.
+            </p>
+            <p class="in-build">
+              <b>In this build:</b> 32 GB DDR4-3200 — comfortable for gaming + a browser with 80 tabs +
+              Discord + Spotify, all at once.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>VRAM — the GPU's private desk</h3>
+            <p class="analogy">Think: the line cooks have their own counter, separate from the chef's desk.</p>
+            <p>
+              The GPU has its <em>own</em> memory glued onto the card. Why? Because shipping textures and
+              frame data over the bus to system RAM would be way too slow. The 3070's 8 GB of VRAM holds
+              all the textures and shadow maps for the current scene.
+            </p>
+            <p class="in-build">
+              <b>In this build:</b> 8 GB VRAM is fine at 1080p/1440p in 2026. At 4K with ray tracing on,
+              modern AAA games can spill over 8 GB — that's the 3070's main limit.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>Storage — the filing cabinet</h3>
+            <p class="analogy">Think: the pantry. Slow vs. desk, but it remembers everything when the lights go out.</p>
+            <p>
+              Storage holds files that survive a power-off: your OS, games, photos. Two flavors:
+            </p>
+            <ul>
+              <li><b>HDD (hard drive):</b> physical spinning platter + a needle. Cheap, big, slow (~150 MB/s). Mostly dead in 2026 except for backups.</li>
+              <li><b>SSD (solid-state drive):</b> flash chips, no moving parts. Fast (500–7000 MB/s) and silent.
+                <ul>
+                  <li><b>SATA SSD</b> — older connector, ~550 MB/s. Fine for older laptops.</li>
+                  <li><b>NVMe SSD</b> — gum-stick stick that plugs straight into the motherboard via PCIe. 3,500–7,000 MB/s. <em>This is what the build uses.</em></li>
+                </ul>
+              </li>
+            </ul>
+            <p class="in-build">
+              <b>In this build:</b> 1 TB WD Blue SN570 NVMe. Boot times in seconds, games install in minutes.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>PSU — the power supply</h3>
+            <p class="analogy">Think: the kitchen's electrical panel — converts wall power into the voltages each part needs.</p>
+            <p>
+              Wall outlets give 120 V AC; PC parts want 12 V / 5 V / 3.3 V DC. The PSU does the conversion
+              and splits the load. Wattage (e.g. 650 W) is the maximum it can deliver.
+              <b>80+ Gold</b> means it's ≥87% efficient — the rest leaks as heat.
+            </p>
+            <p class="in-build">
+              <b>In this build:</b> 650 W SFX (the small form factor). A 5600 + 3070 pulls ~350 W under load,
+              so 650 W is comfortable headroom.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>Motherboard — the wiring</h3>
+            <p class="analogy">Think: the kitchen counter + outlets + plumbing. It doesn't <em>do</em> work, it connects everything.</p>
+            <p>
+              The motherboard is the green PCB that everything plugs into. CPU socket, RAM slots, PCIe slot
+              for the GPU, M.2 slot for the SSD, USB ports, network port, BIOS chip. It also delivers
+              clean power to the CPU via small VRMs (voltage regulators).
+            </p>
+            <p>
+              <b>Form factor</b> is just the size of the board: ATX (big), Micro-ATX (medium), Mini-ITX
+              (tiny — what this build uses). Smaller board = smaller case = the whole point of SFF.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>The bus / I/O — how parts talk</h3>
+            <p class="analogy">Think: the highways between rooms.</p>
+            <p>
+              Components don't just touch — they talk over <b>buses</b>: shared lanes that move data.
+            </p>
+            <ul>
+              <li><b>PCIe</b> — the big highway. The GPU sits on a 16-lane PCIe slot. NVMe SSDs sit on 4 lanes. Newer = faster (PCIe 3.0 → 4.0 → 5.0, each doubling speed).</li>
+              <li><b>DDR</b> — the road from CPU to RAM. DDR4 / DDR5.</li>
+              <li><b>SATA</b> — old highway for hard drives & older SSDs. ~600 MB/s cap.</li>
+              <li><b>USB</b> — the road for external stuff. USB-A, USB-C, Thunderbolt.</li>
+            </ul>
+            <p>
+              Every spec like "PCIe 4.0 ×16" is just <em>which highway, how many lanes, which generation</em>.
+            </p>
+          </article>
+
+          <article class="how-card">
+            <h3>CPU cooler — keeping the brain cool</h3>
+            <p class="analogy">Think: a radiator on top of the chef's head.</p>
+            <p>
+              CPUs turn ~65–105 W of electricity into heat. Without a cooler they'd hit 100 °C in seconds and
+              throttle (slow themselves down to survive). Two flavors:
+            </p>
+            <ul>
+              <li><b>Air cooler</b> — heatpipes carry heat to fins, a fan blows air through them. Cheap, reliable, no leaks.</li>
+              <li><b>AIO (all-in-one liquid)</b> — a closed loop where coolant moves heat to a radiator with fans. Cools better at the same noise level, costs more, can leak (rarely).</li>
+            </ul>
+            <p class="in-build">
+              <b>In this build:</b> The cooler is the <em>tricky</em> part of SFF. Big air coolers don't fit
+              in small cases. The picker above warns you when the chosen cooler is too tall for the chosen case.
+            </p>
+          </article>
+
+        </div>
+
+        <h3 class="how-flow-title">How a frame of a game gets to your monitor</h3>
+        <pre class="how-flow">
+1. CPU runs game logic         → "the player just moved 2 ft forward"
+2. CPU tells GPU what to draw  → over PCIe, ~16 GB/s
+3. GPU reads textures          → from its own VRAM (~448 GB/s on a 3070)
+4. GPU does the math           → millions of pixel ops in parallel
+5. GPU writes the finished frame to a buffer in VRAM
+6. The frame goes out the DisplayPort/HDMI cable to your monitor
+7. Repeat 60–144× per second
+        </pre>
+        <p class="muted" style="font-size:13px;">
+          Power flows: wall → PSU → motherboard + CPU + GPU + SSD. Heat flows out: CPU/GPU → cooler → case fans → room.
+        </p>
+      </section>
+
       <!-- PARTS -->
       <section id="parts">
         <div class="head">

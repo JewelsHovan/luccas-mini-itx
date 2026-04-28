@@ -7,6 +7,20 @@ const escape = (s) =>
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
   })[c]);
 
+// Google-search link — always works, opens shopping results regardless of vendor
+const searchURL = (q) =>
+  `https://www.google.com/search?q=${encodeURIComponent(q + " buy")}`;
+
+// Generic part thumbnails by role (we only have one image per role on disk)
+const PART_THUMB = {
+  cpu: "images/cpu.jpg",
+  motherboard: "images/motherboard.jpg",
+  ram: "images/ram.jpg",
+  ssd: "images/ssd.jpg",
+  psu: "images/psu.jpg",
+  cooler: "images/cooler.jpg",
+};
+
 // --- state ---
 const state = {
   // index of the chosen alternative for each part id
@@ -29,6 +43,7 @@ function renderParts() {
   tbl.innerHTML = `
     <thead>
       <tr>
+        <th></th>
         <th>Role</th>
         <th>Selected</th>
         <th class="price">Price</th>
@@ -63,13 +78,18 @@ function partRowsHTML(p) {
   const opt = chosenPart(p);
   const expanded = state.expanded === p.id;
   const noteHTML = opt.note ? `<div class="note">${escape(opt.note)}</div>` : "";
+  const thumb = PART_THUMB[p.id]
+    ? `<img class="thumb" src="${PART_THUMB[p.id]}" alt="" loading="lazy" />`
+    : "";
 
   let rows = `
     <tr>
+      <td class="img">${thumb}</td>
       <td class="role">${escape(p.role)}</td>
       <td>
         <div class="name">${escape(opt.name)}</div>
         <div class="specs">${escape(opt.specs)}</div>
+        <a href="${searchURL(opt.name)}" target="_blank" rel="noopener" style="font-size:12px;">search ↗</a>
         ${noteHTML}
       </td>
       <td class="price">${fmt(opt.price)}</td>
@@ -83,7 +103,7 @@ function partRowsHTML(p) {
 
   if (expanded) {
     rows += `
-      <tr class="alts"><td colspan="4">
+      <tr class="alts"><td colspan="5">
         <table>
           ${p.options.map((o, i) => `
             <tr class="${i === (state.partChoice[p.id] || 0) ? "current" : ""}">
@@ -93,7 +113,7 @@ function partRowsHTML(p) {
               </td>
               <td class="price" style="text-align:right; font-variant-numeric:tabular-nums;">${fmt(o.price)}</td>
               <td style="text-align:right;">
-                ${o.link ? `<a href="${escape(o.link)}" target="_blank" rel="noopener">official ↗</a>` : ""}
+                <a href="${searchURL(o.name)}" target="_blank" rel="noopener">search ↗</a>
               </td>
               <td style="text-align:right;">
                 <button class="pick" data-part="${p.id}" data-idx="${i}">
@@ -128,6 +148,7 @@ function renderCases() {
   tbl.innerHTML = `
     <thead>
       <tr>
+        <th></th>
         <th>Case</th>
         <th class="vibe-col">Notes</th>
         <th class="vol">Volume</th>
@@ -146,9 +167,10 @@ function renderCases() {
     const sel = c.id === state.selectedCaseId;
     return `
       <tr class="selectable ${sel ? "selected" : ""}" data-case="${c.id}">
+        <td class="img"><img class="thumb" src="${escape(c.img)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'" /></td>
         <td>
           <div class="name">${escape(c.name)}</div>
-          ${c.link ? `<a href="${escape(c.link)}" target="_blank" rel="noopener" style="font-size:12px;">official ↗</a>` : ""}
+          <a href="${searchURL(c.name + " case")}" target="_blank" rel="noopener" style="font-size:12px;">search ↗</a>
         </td>
         <td class="vibe">${escape(c.vibe)}<br><span class="muted">${escape(c.materials)} · ${escape(c.psu)} · ${escape(c.radMax)}</span></td>
         <td class="vol">${c.volume} L</td>
