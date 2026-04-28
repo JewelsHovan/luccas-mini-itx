@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tiny Rocket — Luccas' Mini-ITX Build</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="grid-bg" aria-hidden="true"></div>
+
+    <!-- HERO ------------------------------------------------------------ -->
+    <header class="hero">
+      <nav class="nav">
+        <span class="logo">
+          <span class="logo-dot"></span>
+          <span class="logo-text">tiny.rocket</span>
+        </span>
+        <div class="nav-links">
+          <a href="#parts">Parts</a>
+          <a href="#cases">Cases</a>
+          <a href="#builds">Builds</a>
+          <a href="#compare">Compare</a>
+          <a href="#total">Total</a>
+          <a href="#shopping">List</a>
+        </div>
+      </nav>
+
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="eyebrow">A build for Luccas' RTX 3070</span>
+          <h1>
+            Pack a <span class="grad">desktop GPU</span><br />
+            into something the <em>size of a&nbsp;shoebox.</em>
+          </h1>
+          <p class="lede">
+            You already own the 3070. Below is everything else — six parts,
+            picked for an SFF build, plus six cases to choose the vibe.
+            Toggle between cases to see how the price &amp; the cooler change.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#parts">See the parts →</a>
+            <a class="btn btn-ghost" href="#cases">Pick a case</a>
+          </div>
+          <div class="stat-row">
+            <div><b id="hero-total">$—</b><span>est. total (excl. GPU)</span></div>
+            <div><b>10–18 L</b><span>case volumes</span></div>
+            <div><b>32 GB</b><span>DDR4-3200 dual-channel</span></div>
+            <div><b>1 TB</b><span>NVMe storage</span></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="orbit">
+            <div class="orbit-ring r1"></div>
+            <div class="orbit-ring r2"></div>
+            <div class="orbit-ring r3"></div>
+            <img id="hero-case-img" src="images/build-nr200p.png" alt="" />
+            <div class="hero-tag" id="hero-case-tag">Cooler Master NR200P V3</div>
+          </div>
+          <div class="hero-toggle" role="tablist" aria-label="Hero view">
+            <button data-view="build" class="active">Inside</button>
+            <button data-view="bare">Just the case</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PARTS ----------------------------------------------------------- -->
+    <section id="parts" class="section">
+      <div class="section-head">
+        <span class="kicker">01 / parts</span>
+        <h2>The shopping list</h2>
+        <p>
+          One CPU, one board, one stick of RAM, one SSD, one PSU, one cooler.
+          Everything chosen to be the boring-correct answer for a 5600 + 3070
+          mini-ITX rig.
+        </p>
+      </div>
+      <div id="parts-grid" class="parts-grid"></div>
+    </section>
+
+    <!-- CASES ---------------------------------------------------------- -->
+    <section id="cases" class="section">
+      <div class="section-head">
+        <span class="kicker">02 / cases</span>
+        <h2>Pick the vibe</h2>
+        <p>
+          Six legitimately good ITX cases. Click one to make it the build's
+          case — the hero, total, and cooler note all update.
+        </p>
+      </div>
+      <div id="case-grid" class="case-grid"></div>
+    </section>
+
+    <!-- BUILDS GALLERY ------------------------------------------------- -->
+    <section id="builds" class="section">
+      <div class="section-head">
+        <span class="kicker">02b / what it'll look like</span>
+        <h2>Complete builds</h2>
+        <p>
+          AI-generated previews of the finished PC inside each case so you can
+          picture it on the desk before buying. (Concept renders, not photos —
+          actual cables will be messier.)
+        </p>
+      </div>
+      <div id="builds-grid" class="builds-grid"></div>
+    </section>
+
+    <!-- COMPARE -------------------------------------------------------- -->
+    <section id="compare" class="section">
+      <div class="section-head">
+        <span class="kicker">03 / compare</span>
+        <h2>Side-by-side</h2>
+        <p>Pick two cases to spec-check them head-to-head.</p>
+      </div>
+      <div class="compare-row">
+        <div class="compare-col">
+          <select id="compare-a" class="compare-select"></select>
+          <div id="compare-a-card" class="compare-card"></div>
+        </div>
+        <div class="compare-vs">vs</div>
+        <div class="compare-col">
+          <select id="compare-b" class="compare-select"></select>
+          <div id="compare-b-card" class="compare-card"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOTAL ---------------------------------------------------------- -->
+    <section id="total" class="section">
+      <div class="section-head">
+        <span class="kicker">04 / total</span>
+        <h2>What's it cost?</h2>
+        <p>Live total based on the selected case + the PA120 → AIO swap if needed.</p>
+      </div>
+      <div class="total-card">
+        <ul id="total-list" class="total-list"></ul>
+        <div class="total-foot">
+          <div>
+            <span class="muted">Selected case</span>
+            <b id="total-case-name">—</b>
+          </div>
+          <div class="total-final">
+            <span class="muted">Total (no GPU)</span>
+            <b id="total-amount">$—</b>
+          </div>
+        </div>
+        <p class="fineprint">
+          Prices are USD ballpark from manufacturer / Newegg listings — do a
+          spot-check before checkout. GPU not included (Luccas already has the
+          RTX 3070).
+        </p>
+      </div>
+    </section>
+
+    <!-- SHOPPING LIST -------------------------------------------------- -->
+    <section id="shopping" class="section">
+      <div class="section-head">
+        <span class="kicker">05 / shopping list</span>
+        <h2>Copy &amp; go</h2>
+        <p>Plain-text list of everything below — paste into Notes or a PCPartPicker list.</p>
+      </div>
+      <div class="shop-card">
+        <pre id="shop-text"></pre>
+        <button id="shop-copy" class="btn btn-primary">Copy to clipboard</button>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>Built for Luccas · April 2026</span>
+      <span class="muted">tiny.rocket</span>
+    </footer>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
